@@ -1,0 +1,578 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관심분야목표</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:900&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Merriweather'>
+
+    <style>
+        /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+        
+        *,
+         :before,
+         :after {
+            box-sizing: border-box;
+        }
+        
+        .unstyled {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .unstyled a {
+            text-decoration: none;
+        }
+        
+        .list-inline {
+            overflow: hidden;
+        }
+        
+        .list-inline li {
+            float: left;
+        }
+        
+        .header {
+            /*
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;*/
+            width: 17.5em;
+            background: #35302D;
+        }
+        
+        .main-nav ul {
+            border-top: solid 1px #3C3735;
+        }
+        
+        .main-nav li {
+            border-bottom: solid 1px #3C3735;
+        }
+        
+        .main-nav a {
+            padding: 1.1em 0;
+            color: #DFDBD9;
+            font: 400 1.125em "Source Sans Pro", Helvetica, Arial, sans-serif;
+            text-align: center;
+            text-transform: lowercase;
+        }
+        
+        .main-nav a:hover {
+            color: #fff;
+        }
+        
+        .list-hover-slide li {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .list-hover-slide a {
+            display: block;
+            position: relative;
+            z-index: 1;
+            transition: .35s ease color;
+        }
+        
+        .list-hover-slide a:before {
+            content: '';
+            display: block;
+            z-index: -1;
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-right: solid 5px #BE354D;
+            background: #3C3735;
+            transition: .35s ease left;
+        }
+        
+        .list-hover-slide a.is-current:before,
+        .list-hover-slide a:hover:before {
+            left: 0;
+        }
+        
+        #projectdiv {
+            border: 3px solid white;
+            border-radius: 15px;
+            overflow: auto;
+            height: 300px;
+            box-shadow: 10px 10px #bcbdc8;
+        }
+        
+        body>#projectdiv {
+            transition: all 0.3s ease;
+        }
+        
+        .grow {
+            background-color: #ebedff;
+            margin-left: 80px;
+        }
+        
+        .grow:hover {
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+        
+        @font-face {
+            font-family: "Grotesque";
+            src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/BrandonGrotesque-Regular.eot"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/BrandonGrotesque-Regular.ttf"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/BrandonGrotesque-Regular.woff");
+            font-weight: normal;
+        }
+        
+        @font-face {
+            font-family: "Grotesque Black";
+            src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/BrandonGrotesque-Black.eot"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/BrandonGrotesque-Black.ttf"), url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/BrandonGrotesque-Black.woff");
+            font-weight: bold;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            font-size: 100%;
+        }
+        
+        body {
+            padding: 0;
+            margin: 0;
+            /*background: #152536;*/
+        }
+        
+        a[href] {
+            position: relative;
+        }
+        
+        a[href],
+        a[href]:link,
+        a[href]:visited,
+        a[href]:active {
+            text-decoration: none;
+            /*color: #d8276c;
+            text-shadow: 2px 2px 2px #070c11;
+            padding-bottom: 3px;
+            font-weight: bold;*/
+        }
+        
+        a[href]::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            left: 0;
+            bottom: 0;
+            background: #fff;
+            width: 0;
+            height: 1px;
+            transition: 0.35s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+        }
+        
+        a[href]:hover::after {
+            width: 100%;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .note {
+            margin-top: 30px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: "Merriweather", sans-serif;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        article.card {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 350px;
+            -webkit-transform: translate(-50%, -50%) translateZ(0);
+            transform: translate(-50%, -50%) translateZ(0);
+            border-radius: 3px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        article.card .thumb {
+            width: auto;
+            height: 260px;
+            background: url("css/computer.jpg") no-repeat center;
+            background-size: cover;
+            border-radius: 3px;
+        }
+        
+        article.card .infos {
+            width: auto;
+            height: 350px;
+            position: relative;
+            padding: 14px 24px;
+            background: #fff;
+            transition: 0.4s 0.15s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+        }
+        
+        article.card .infos .title {
+            position: relative;
+            margin: 10px 0;
+            letter-spacing: 3px;
+            color: #152536;
+            font-family: "Grotesque Black", sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 0px #32577f;
+        }
+        
+        article.card .infos .flag {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 35px;
+            height: 23px;
+            background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/397014/flag.png") no-repeat top right;
+            background-size: 100% auto;
+            display: inline-block;
+        }
+        
+        article.card .infos .date,
+        article.card .infos .seats {
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: .85rem;
+            color: rgba(21, 37, 54, 0.7);
+            font-family: "Grotesque", sans-serif;
+        }
+        
+        article.card .infos .seats {
+            display: inline-block;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+        }
+        
+        article.card .infos .txt {
+            font-family: "Merriweather", sans-serif;
+            line-height: 2;
+            font-size: .95rem;
+            color: rgba(21, 37, 54, 0.7);
+            opacity: 0;
+            transition: 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+        }
+        
+        article.card .infos .details {
+            position: absolute;
+            left: 0;
+            left: 0;
+            bottom: 0;
+            margin: 10px 0;
+            padding: 20px 24px;
+            letter-spacing: 1px;
+            color: #4e958b;
+            font-family: "Grotesque Black", sans-serif;
+            font-size: .9rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            opacity: 0;
+            transition: 0.5s 0.25s cubic-bezier(0.17, 0.67, 0.5, 1.03);
+        }
+        
+        article.card:hover .infos {
+            -webkit-transform: translateY(-260px);
+            transform: translateY(-260px);
+        }
+        
+        article.card:hover .infos .seats,
+        article.card:hover .infos .txt,
+        article.card:hover .infos .details {
+            opacity: 1;
+        }
+    </style>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="book-container section">
+            <div class="row slide">
+                <h1 class="highlight" style="margin-top:-50px;"><span>관심 분야/목표</span></h1>
+                <div class="container">
+                    <div class="col-md-12" style="margin-top:200px; margin-bottom:500px;">
+                        <div class="col-md-4">
+                            <div class="note">Based on this <a href="https://dribbble.com/shots/3127773-Event-Card" target="_blank">dribbble</a></div>
+                            <article class="card">
+                                <div class="thumb"></div>
+                                <div class="infos">
+                                    <h2 class="title">관심언어</h2>
+                                    <h3 class="date">마우스를 올려보세요.</h3>
+                                    <h3 class="seats"></h3>
+
+
+                                    <p class="txt">
+                                        1순위 : JAVA
+                                    </p>
+                                    <p class="txt">
+                                        2순위 : C++
+                                    </p>
+                                    <p class="txt">
+                                        3순위 : C
+                                    </p>
+
+                                    <h3 class="details"></h3>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="note">Based on this <a href="https://dribbble.com/shots/3127773-Event-Card" target="_blank">dribbble</a></div>
+                            <article class="card">
+                                <div class="thumb"></div>
+                                <div class="infos">
+                                    <h2 class="title">관심분야</h2>
+                                    <h3 class="date">마우스를 올려보세요.</h3>
+                                    <h3 class="seats"></h3>
+
+                                    <p class="txt">
+                                        1순위 :시스템소프트웨어
+                                    </p>
+                                    <p class="txt">
+                                        2순위 : 웹
+                                    </p>
+                                    <p class="txt">
+                                        3순위 : 빅데이터
+                                    </p>
+
+                                    <h3 class="details"></h3>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="note">Based on this <a href="https://dribbble.com/shots/3127773-Event-Card" target="_blank">dribbble</a></div>
+                            <article class="card">
+                                <div class="thumb"></div>
+                                <div class="infos">
+                                    <h2 class="title">희망직무</h2>
+                                    <h3 class="date">마우스를 올려보세요.</h3>
+                                    <h3 class="seats"></h3>
+
+                                    <p class="txt">
+                                        1순위 : 사업/프로젝트관리(PM)
+                                    </p>
+                                    <p class="txt">
+                                        2순위 : 웹 전문가
+                                    </p>
+                                    <p class="txt">
+                                        3순위 : 기타
+                                    </p>
+
+                                    <h3 class="details"></h3>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row slide">
+
+                <h1 class="highlight"><span>관심 분야/목표 추가정보</span></h1>
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="col-md-3 header">
+                            <div class="nav-wrap">
+                                <nav class="main-nav" role="navigation">
+                                    <ul class="unstyled list-hover-slide">
+                                        <li><a class="menuLink" href="job_C.hbs" target="job_target">C/C++</a></li>
+                                        <li><a class="menuLink" href="job_java.hbs" target="job_target">JAVA</a></li>
+                                        <li><a class="menuLink" href="job_javascript.hbs" target="job_target">JAVA Script</a></li>
+                                        <li><a class="menuLink" href="job_php.hbs" target="job_target">PHP</a></li>
+                                        <li><a class="menuLink" href="job_5.hbs" target="job_target">HTML5</a></li>
+                                        <li><a class="menuLink" href="job_objectc.hbs" target="job_target">Object-C</a></li>
+                                        <li><a class="menuLink" href="job_visual.hbs" target="job_target">Visual</a></li>
+                                        <li><a class="menuLink" href="job_py.hbs" target="job_target">python</a></li>
+                                        <li><a class="menuLink" href="job_etc.hbs" target="job_target">기타</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <p align="center">
+                                <iframe name="job_target" src="job_C.hbs" width=900px height=450px scrolling="auto" frameBorder="0"></iframe>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row slide">
+                <h1 class="highlight"><span>관심 분야/목표 입력</span></h1>
+                <div class="container">
+                    <br/><br/>
+                    <div class="col-md-4">
+                        <form>
+                            <ul class="form-style-1">
+                                <li><label>관심언어</label></li>
+                                <br>
+                                <li><label>1순위</label>
+                                    <input type="text" placeholder="1순위" id="searchbox" class="field-long" />
+                                </li>
+                                <li><label>2순위</label>
+                                    <input type="text" placeholder="2순위" id="searchbox" class="field-long" />
+                                </li>
+                                <li><label>3순위</label>
+                                    <input type="text" placeholder="3순위" id="searchbox" class="field-long" />
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <ul class="form-style-1">
+                                <li><label>관심분야</label></li>
+                                <br>
+                                <li><label>1순위</label>
+                                    <select name="area2" class="field-select">
+                                                    <option value="area1">웹</option>
+                                                    <option value="area2">ios</option>
+                                                    <option value="area3">안드로이드</option>
+                                                    <option value="area4">시스템소프트웨어</option>
+                                                    <option value="area5">응용 소프트웨어</option>
+                                                    <option value="area6">빅데이터</option>
+                                                    <option value="area7">정보보호</option>
+                                                    <option value="area8">데이터베이스</option>
+                                                    <option value="area9">인공지능</option>
+                                                    <option value="area10">IOT</option>
+                                                    <option value="area11">기계학습</option>
+                                                </select>
+                                </li>
+                                <li><label>2순위</label>
+                                    <select name="area2" class="field-select">
+                                                    <option value="area1">웹</option>
+                                                    <option value="area2">ios</option>
+                                                    <option value="area3">안드로이드</option>
+                                                    <option value="area4">시스템소프트웨어</option>
+                                                    <option value="area5">응용 소프트웨어</option>
+                                                    <option value="area6">빅데이터</option>
+                                                    <option value="area7">정보보호</option>
+                                                    <option value="area8">데이터베이스</option>
+                                                    <option value="area9">인공지능</option>
+                                                    <option value="area10">IOT</option>
+                                                    <option value="area11">기계학습</option>
+                                                </select>
+                                </li>
+                                <li><label>3순위</label>
+                                    <select name="area2" class="field-select">
+                                                    <option value="area1">웹</option>
+                                                    <option value="area2">ios</option>
+                                                    <option value="area3">안드로이드</option>
+                                                    <option value="area4">시스템소프트웨어</option>
+                                                    <option value="area5">응용 소프트웨어</option>
+                                                    <option value="area6">빅데이터</option>
+                                                    <option value="area7">정보보호</option>
+                                                    <option value="area8">데이터베이스</option>
+                                                    <option value="area9">인공지능</option>
+                                                    <option value="area10">IOT</option>
+                                                    <option value="area11">기계학습</option>
+                                                </select>
+                                </li>
+                                <br><br>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <ul class="form-style-1">
+                                <li><label>희망 직무</label></li>
+                                <br>
+                                <li>
+                                    <label>1순위</label>
+                                    <select name="position3" class="field-select">
+                                                        <option value="position1">사업/프로젝트관리(PM)</option>
+                                                        <option value="position2">SW분석가</option>
+                                                        <option value="position3">SW개발자</option>
+                                                        <option value="position4">웹 전문가</option>
+                                                        <option value="position5">정보시스템 운영 및 지원</option>
+                                                        <option value="position6">기타</option>
+                                                    </select>
+                                </li>
+                                <li>
+                                    <label>2순위</label>
+                                    <select name="position3" class="field-select">
+                                                            <option value="position1">사업/프로젝트관리(PM)</option>
+                                                            <option value="position2">SW분석가</option>
+                                                            <option value="position3">SW개발자</option>
+                                                            <option value="position4">웹 전문가</option>
+                                                            <option value="position5">정보시스템 운영 및 지원</option>
+                                                            <option value="position6">기타</option>
+                                                        </select>
+                                </li>
+                                <li>
+                                    <label>3순위</label>
+                                    <select name="position3" class="field-select">
+                                                                <option value="position1">사업/프로젝트관리(PM)</option>
+                                                                <option value="position2">SW분석가</option>
+                                                                <option value="position3">SW개발자</option>
+                                                                <option value="position4">웹 전문가</option>
+                                                                <option value="position5">정보시스템 운영 및 지원</option>
+                                                                <option value="position6">기타</option>
+                                                            </select>
+                                </li>
+
+                                <br><br>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+                <br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

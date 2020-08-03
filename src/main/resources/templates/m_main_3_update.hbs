@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업데이트</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+
+
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="book-container section">
+            <h1 class="highlight"><span>업데이트</span></h1>
+            <div class="row slide">
+                <div class="container">
+                    <h3>이수 성적, 교내 대회, C 인증 시험, 졸업자 정보를 업데이트하세요.</h3>
+                    <div class="col-md-3">
+                        <form action="" method="POST">
+                            <ul class="form-style-1">
+                                <li><label>이수 성적 엑셀</label>
+                                    <input type="file" class="field-long">
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <form action="" method="POST">
+                            <ul class="form-style-1">
+                                <li><label>교내 대회 엑셀</label>
+                                    <input type="file" class="field-long">
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <form action="" method="POST">
+                            <ul class="form-style-1">
+                                <li><label>C 인증 시험 엑셀</label>
+                                    <input type="file" class="field-long">
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <form action="" method="POST">
+                            <ul class="form-style-1">
+                                <li><label>졸업자 정보 엑셀</label>
+                                    <input type="file" class="field-long">
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            console.log("Hello World!");
+            $.fn.fullpage.moveTo('Book1', 1);
+        });
+    </script>
+</body>
+
+</html>

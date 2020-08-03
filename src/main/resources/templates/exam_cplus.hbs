@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+
+    <title>C++ 문제</title>
+
+    <style>
+        .btn {
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+            background-color: lightskyblue;
+        }
+        
+        .btn:hover {
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+        
+        body {
+            background: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="fullpage">
+
+    <form action="/exam_cplus" id="Test_Cplus_form" name="Test_Cplus_form" method="POST">
+        <div class="book-container section" data-anchor="prob1">
+            <div class="row">
+                <div class="container">
+                    <div style="overflow:auto;">
+                            <pre>
+    (________)은 객체 내부의 상세한 정보와 처리방식을 외부로부터 감추어 준다.
+    또한 객체 내부를 감추고 외부 사용자들에게 공개된 자료와 메소드에 대한 접근 방법만 제시하여
+    추상화를 통해 독립성을 보장해 준다.
+
+                            </pre>
+                    </div>
+
+                    <ul class="form-style-1">
+                        <li>
+                            <input type="text" id="test_cplus1" name="user_A1" value="" placeholder="답을 입력하세요." class="field-divided" />
+
+                        </li>
+                    </ul>
+
+                    <br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="book-container section" data-anchor="prob2">
+            <div class="row">
+                <div class="container">
+                    <div style="overflow:auto;">
+                            <pre>
+        사람 뇌의 기억장치가 한 가지의 자료구조로 이루어져 있다고 가정할 때,
+         다음의 현상을 설명하기에 가장 적합한 자료구조의 이름을 쓰시오.
+
+        - 사람은 잠을 자면서 꿈을 꾼다. 잠에서 깨어나면 꿈의 마지막 장면이 떠오르며,
+        시간이 지날수록 점차 이전 장면이 역순으로 떠오르게 된다.
+
+        1. List 2. Stack 3.Tree 4 Queue
+                                    </pre>
+                    </div>
+                    <ul class="form-style-1">
+                        <li>
+                            <input type="text" id="test_cplus2" name="user_A2" value="" placeholder="답을 입력하세요." class="field-divided" />
+
+                        </li>
+                    </ul>
+
+                    <br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="book-container section" data-anchor="prob3">
+            <div class="row">
+                <div class="container">
+                    <div style="overflow:auto; height:400px;">
+                            <pre>
+        어느 누군가가 타임머신을 타고 과거로 가서 숫자 0이 없는 수 체계를 전파했습니다.
+        역사가 바뀌어 이제 사람들의 의식 속 엔 0이란 숫자가 사라졌습니다.
+        따라서, 현재의 수 체계는 1, 2, 3, ..., 8, 9, 11, 12, ...와 같이 0이 없게 바뀌었습니다.
+        0을 포함하지 않은 자연수 num이 매개변수로 주어질 때,
+        이 수에 1을 더한 수를 return 하도록 빈칸을 채워주세요.
+
+        #include <iostream>
+        #include <string>
+        #include <vector>
+
+        using namespace std;
+
+        long long solution(long long num) {
+            num++;
+            long long digit = 1;
+            while (__________________) {
+                num += digit;
+                digit *= 10;
+                }
+                return num;
+        }
+                                    </pre>
+                    </div>
+                    <ul class="form-style-1">
+                        <li>
+                            <input type="text" id="test_cplus3" name="user_A3" value="" placeholder="답을 입력하세요." class="field-divided" />
+                            <input type="submit" value="Submit" id="submitcplus" name="submitcplus" />
+                        </li>
+                    </ul>
+
+                    <br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#fullpage").fullpage({
+                anchors: ["prob1", "prob2", "prob3"],
+                loopHorizontal: false,
+                navigation: true,
+                navigationPosition: 'right',
+                navigationTooltips: ['문제 1', '문제 2', '문제 3']
+            });
+        });
+    </script>
+</body>

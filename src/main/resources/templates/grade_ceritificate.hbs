@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <title>자격증</title>
+
+    <style>
+        /*form 스타일*/
+        
+        .form-style-1 {
+            margin: 10px auto;
+            max-width: 400px;
+            padding: 20px 12px 10px 20px;
+            font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            text-align: center;
+        }
+        
+        .form-style-1 li {
+            padding: 0;
+            display: block;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+        
+        .form-style-1 label {
+            margin: 0 0 3px 0;
+            padding: 0px;
+            display: block;
+            font-weight: bold;
+        }
+        
+        .form-style-1 input[type=text],
+        .form-style-1 input[type=date],
+        .form-style-1 input[type=datetime],
+        .form-style-1 input[type=number],
+        .form-style-1 input[type=search],
+        .form-style-1 input[type=time],
+        .form-style-1 input[type=url],
+        .form-style-1 input[type=email],
+        textarea,
+        select {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border: 1px solid #BEBEBE;
+            padding: 7px;
+            margin: 0px;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;
+        }
+        
+        .form-style-1 input[type=text]:focus,
+        .form-style-1 input[type=date]:focus,
+        .form-style-1 input[type=datetime]:focus,
+        .form-style-1 input[type=number]:focus,
+        .form-style-1 input[type=search]:focus,
+        .form-style-1 input[type=time]:focus,
+        .form-style-1 input[type=url]:focus,
+        .form-style-1 input[type=email]:focus,
+        .form-style-1 textarea:focus,
+        .form-style-1 select:focus {
+            -moz-box-shadow: 0 0 8px #8f283b;
+            -webkit-box-shadow: 0 0 8px #8f283b;
+            box-shadow: 0 0 8px #8f283b;
+            border: 1px solid #8f283b;
+        }
+        
+        .form-style-1 .field-divided {
+            width: 49%;
+        }
+        
+        .form-style-1 .field-long {
+            width: 100%;
+        }
+        
+        .form-style-1 .field-middle {
+            width: 85%;
+        }
+        
+        .form-style-1 .field-select {
+            width: 100%;
+        }
+        
+        .form-style-1 .field-textarea {
+            height: 100px;
+        }
+        
+        .form-style-1 input[type=submit],
+        .form-style-1 input[type=button] {
+            background: #BE354D;
+            padding: 8px 15px 8px 15px;
+            border: none;
+            color: #fff;
+        }
+        
+        .form-style-1 input[type=submit]:hover,
+        .form-style-1 input[type=button]:hover {
+            background: #dc183c;
+            box-shadow: none;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+        
+        .form-style-1 .required {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="/main_6_cert/License" method="POST">
+        <ul class="form-style-1">
+            <li><label>분야</label>
+                <select id="select1" class="field-select">
+                <option val="0">분야</option>
+            </select>
+            </li>
+            <li><label>자격증 이름</label>
+                <select id="select2" class="field-select">
+                <option val="0">자격증 이름</option>
+            </select>
+            </li>
+            <li><label>선택한 자격증</label>
+                <input type="text" id="search"  name="license_name"  class="field-long">
+                </select>
+            </li>
+
+            <li>
+                <input type='submit' id="searchBtn" value="제출" />
+            </li>
+        </ul>
+    </form>
+    <script>
+        let listData = {
+            //1depth
+            '010000': '프로그래밍 분야',
+            '020000': 'OS 분야',
+            '030000': '네트워크 분야',
+            '040000': '해킹&정보보안 분야',
+            '050000': '데이터 분석 분야',
+            '060000': '데이터베이스 분야',
+            '070000': '클라우드 컴퓨팅 분야',
+            '080000': '그래픽 분야',
+
+            //2depth
+            '010100': 'OCJP',
+            '010200': 'OCWCD',
+            '010300': 'OCBCD',
+            '010400': '정보처리기능사',
+            '010500': '정보처리산업기사',
+            '010600': '정보처리기사',
+            '020100': '컴퓨터 활용능력 1급',
+            '020200': '컴퓨터 활용능력 2급',
+            '020300': '컴퓨터 활용능력 3급',
+            '020400': '워드프로세서 1급',
+            '020500': '워드프로세서 2급',
+            '020600': '워드프로세서 3급',
+            '020700': '사무자동화산업기사',
+            '020800': 'MOS',
+            '020900': 'ITQ',
+            '021000': 'DIAT',
+            '021100': 'E-test',
+            '021200': '문서실무사',
+            '030100': 'CCNA',
+            '030200': 'CCNP',
+            '030300': 'CCIE',
+            '030400': '네트워크 관리사 2급',
+            '040100': 'CISA',
+            '040200': 'CISSP',
+            '040300': '정보보안산업기사',
+            '040400': '정보보안기사',
+            '050100': '데이터분석준전문가',
+            '050200': '데이터분석전문가',
+            '060100': 'OCA',
+            '060200': 'OCP',
+            '060300': 'OCM',
+            '070100': 'MS Azure',
+            '070200': 'AWS 아키텍쳐',
+            '080100': 'GTQ 1급',
+            '080200': 'GTQ 2급',
+            '080300': 'GTQ 일러스트 1급',
+            '080400': 'GTQ 플래시 1급',
+            '080500': 'GTQ 인디자인 1급',
+            '080600': '컴퓨터그래픽스운용기능사',
+            '080700': '웹디자인기능사',
+            '080900': 'Auto cad 1급',
+            '081000': 'Auto cad 2급',
+            '081100': '전산응용기계제도기능사',
+            '081200': '전상응용토목제도기능사',
+        };
+
+        $(document).ready(function() {
+
+            // 초기 1depth 세팅
+            $.each(listData, function(index, value) {
+
+                if (index.indexOf('0000') > -1) {
+                    $("#select1").append(new Option(value, index));
+                }
+
+            });
+
+            // 목록1 변경 시 호출
+            $("#select1").change(function() {
+                var parentIndex = $(this).val();
+
+                if ($(this)[0].selectedIndex != 0) {
+                    // $('#search').val($(this).find('option:selected').text());
+                } else {
+                    $('#search').val('');
+                }
+
+                $('#select2').children('option:not(:first)').remove();
+
+                $.each(listData, function(index, value) {
+                    if (index.indexOf('0000') == -1 && parentIndex.substring(0, 2) == index.substring(0, 2) && index.substring(4, 6) == '00') {
+                        $("#select2").append(new Option(value, index));
+                    }
+                });
+
+                // 목록 2변경 시 수행
+                select2Bind();
+            });
+
+            // 목록 2변경 시 수행
+            function select2Bind() {
+                $("#select2").unbind('change');
+                $("#select2").change(function() {
+                    var parentIndex = $(this).val();
+
+                    if ($(this)[0].selectedIndex != 0) {
+                        $('#search').val($('#search').val().split(' ')[0] + ' ' + $(this).find('option:selected').text());
+                    } else {
+                        $('#search').val($('#search').val().split(' ')[0]);
+                    }
+
+                });
+            }
+            /*
+
+            // 검색 버튼 클릭
+            $('#searchBtn').click(function() {
+                if ($.trim($('#search').val()) == '') {
+                    alert('검색어가 없습니다.');
+                } else {
+                    alert($.trim($('#search').val()));
+                }
+            })
+            */
+        });
+    </script>
+</body>
+
+</html>

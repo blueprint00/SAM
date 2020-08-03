@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sam?serverTimezone=UTC
+    username: root
+    password: good
+    driver-class-name: com.mysql.jdbc.Driver
+  devtools:
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false
+  mustache:
+    expose-session-attributes: true
+

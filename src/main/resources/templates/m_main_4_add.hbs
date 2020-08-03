@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추가</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+
+
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="book-container section">
+            <h1 class="highlight"><span>인턴, 공모전 추가</span></h1>
+            <div class="row slide">
+                <div class="container">
+                    <h5 align="center">인턴 업데이트</h5>
+                    <form action="" method="POST">
+                        <ul class="form-style-1">
+                            <li><label>기업명</label>
+                                <input type="text" placeholder="기업명" class="field-long" />
+                            </li>
+                            <li>
+                                <label>기업정보</label>
+                                <select name="cominfo" class="field-select">
+                                            <option value="major">대기업</option>
+                                            <option value="small">중소기업</option>
+                                            <option value="startup">스타트업</option>
+                                            <option value="public">공기업</option>
+                                        </select>
+                            </li>
+                            <li><label>분야</label>
+                                <select name="area" class="field-select">
+                                    <option value="front">프론트엔드</option>
+                                    <option value="back">백엔드</option>
+                                    </select>
+                            </li>
+                            <li>
+                                <label>기간</label>
+                                <input type="date" class="field-divided">
+                                <input type="date" class="field-divided">
+                            </li>
+                            <li><label>참가 자격</label>
+                                <input type="text" placeholder="참가 자격을 입력하세요" class="field-long" />
+                            </li>
+                            <li>
+                                <input type="submit" value="Submit" />
+                            </li>
+                        </ul>
+                    </form>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+            <div class="row slide">
+                <div class="container">
+                    <h5 align="center">공모전 업데이트</h5>
+                    <div style="overflow: auto;">
+                        <form action="" method="POST">
+                            <ul class="form-style-1" style="margin-top:-30px;">
+                                <li><label>공모전명</label>
+                                    <input type="text" placeholder="공모전명" class="field-long" />
+                                </li>
+                                <li>
+                                    <label>신청 기간</label>
+                                    <input type="date" class="field-divided">
+                                    <input type="date" class="field-divided">
+                                </li>
+                                <li><label>공모전 주최 측</label>
+                                    <input type="text" placeholder="주최 측을 입력하세요" class="field-long" />
+                                </li>
+                                <li><label>공모전 분야</label>
+                                    <input type="text" placeholder="분야를 입력하세요" class="field-long" />
+                                </li>
+                                <li><label>참가 자격</label>
+                                    <input type="text" placeholder="참가 자격을 입력하세요" class="field-long" />
+                                </li>
+                                <li><label>공모전 홈페이지</label>
+                                    <input type="url" class="field-long" />
+                                </li>
+                                <li><label>공모전 포스터</label>
+                                    <input type="file" class="field-long" />
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+
+                </div>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+        </div>
+    </div>
+    <!--<script>
+        $(document).ready(function() {
+            console.log("Hello World!");
+            $.fn.fullpage.moveTo('Book1', 1);
+        });
+    </script>-->
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Muli:300,400,700');
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #eee;
+            height: 150vh;
+            font-family: 'Muli', sans-serif;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            /*display: flex;*/
+        }
+
+        .text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            list-style: none;
+            border-bottom: 0;
+        }
+
+        .text.hidden {
+            border-bottom: 1px solid #BE354D;
+        }
+
+        .text li {
+            display: inline-block;
+            float: left;
+            font-weight: 700;
+            font-size: 3em;
+            color: #BE354D;
+            opacity: 1;
+            transition: all 0.5s ease-in-out;
+            max-width: 2em;
+        }
+        
+        .text.hidden li.spaced {
+            padding-left: 0;
+        }
+        
+        .text li.spaced {
+            padding-left: 0.5em;
+        }
+        
+        .text.hidden li.ghost {
+            opacity: 0;
+            max-width: 0;
+        }
+        
+        .raise:hover,
+        .raise:focus {
+            box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+            -webkit-transform: translateY(-0.25em);
+            transform: translateY(-0.25em);
+        }
+        
+        .raise {
+            --color: #be354d;
+            --hover: #ef6eae;
+        }
+        
+        button {
+            color: var(--color);
+            transition: 0.25s;
+        }
+        
+        button:hover,
+        button:focus {
+            border-color: var(--hover);
+            color: #fff;
+        }
+        
+        button {
+            background: none;
+            border: 2px solid;
+            font: inherit;
+            line-height: 1;
+            margin: 0.5em;
+            padding: 1em 2em;
+        }
+        
+        h1 {
+            font-weight: 400;
+        }
+        
+        code {
+            color: #e4cb58;
+            font: inherit;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <ul class="text hidden">
+        <li>S</li>
+        <li class="ghost">o</li>
+        <li class="ghost">f</li>
+        <li class="ghost">t</li>
+        <li class="ghost">w</li>
+        <li class="ghost">a</li>
+        <li class="ghost">r</li>
+        <li class="ghost">e</li>
+        <li class="spaced">A</li>
+        <li class="ghost">b</li>
+        <li class="ghost">i</li>
+        <li class="ghost">l</li>
+        <li class="ghost">i</li>
+        <li class="ghost">t</li>
+        <li class="ghost">y</li>
+        <li class="spaced">M</li>
+        <li class="ghost">o</li>
+        <li class="ghost">n</li>
+        <li class="ghost">i</li>
+        <li class="ghost">t</li>
+        <li class="ghost">o</li>
+        <li class="ghost">r</li>
+        <li class="ghost">i</li>
+        <li class="ghost">n</li>
+        <li class="ghost">g</li>
+    </ul>
+
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br>
+
+    <div class="buttons">
+        <button class="raise" onclick="location.href='login'">Log In</button>
+    </div>
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+
+
+    <script>
+        $(function() {
+            var text = $(".text");
+            $(window).scroll(function() {
+                var scroll = $(window).scrollTop();
+
+                if (scroll >= 150) {
+                    text.removeClass("hidden");
+                } else {
+                    text.addClass("hidden");
+                }
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첫화면</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:900&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+    <link href="../../assets/styles.css" rel="stylesheet" />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/sam.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js'></script>
+
+    <style>
+        table{
+            font-family:'Do Hyeon', sans-serif;
+            text-align: center;
+            color:#f7e1b5;
+            font-size:30px;
+        }
+
+        #chart {
+            max-width: 650px;
+            margin: 35px auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="fullpage">
+        <div class="book-container section">
+            <div class="container">
+
+                <div class="col-md-12 banner" style="width:100%;">
+
+                </div>
+
+                <h1 class="highlight"><span id="picture">알려줘요 SAM!</span></h1>
+
+                <br><br><br><br><br><br><br><br>
+
+
+                <div class="col-md-12">
+                    <div id="chart" class="col-md-6">
+
+
+
+                         <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+
+                <script>
+                    function generateData(count, yrange,yrange2) {
+                        var i = 0;
+                        var series = [];
+
+                            //var x = 'w' + (i + 1).toString();
+                            var x ="";
+
+                            var y = Math.floor(yrange * 100);
+
+                            series.push({
+                                x: x,
+                                y: y
+                            });
+
+                        var x ="";
+
+                        var y = Math.floor(yrange2 * 100 + 100);
+
+                        var z="아무거나 그냥";
+
+                        series.push({
+                            x: x,
+                            y: y,
+                            z: z
+                        });
+
+
+                        return series;
+                    }
+
+
+                    var options = {
+                        chart: {
+                            height: 350,
+                            type: 'heatmap',
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        colors: ["#C94059"],
+                        {{#totalMonitoring}}
+                        series: [
+
+                            {
+                            name: "주력언어, 프로젝트 ->",
+                            data:generateData(2, {{plangGrade}} ,{{projGrade}} )
+
+                        },
+                            {
+                                name: "공인 성적, 인턴 경험 ->",
+                                data: generateData(2, {{certGrade}},{{internGrade}})
+                            },
+                            {
+                                name: "교육 경험, 이수 성적",
+                                data: generateData(2   ,{{eduGrade}},{{subjectGrade}})
+                            }
+                        ] {{/totalMonitoring}} ,
+                        title: {
+                            text: '높을 수록 진한 색입니다.'
+                        }
+                        ,
+
+                    }
+
+                    var chart = new ApexCharts(
+                            document.querySelector("#chart"),
+                            options
+                    );
+
+                    chart.render();
+                </script>
+
+            </div>
+                    <div class="col-md-6 col-sm-6">
+                        <!--색깔 수치화-->
+                        <br><br><br><br>
+                        <img src="css/wordcloud.png" alt="단어구름" height="100%" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

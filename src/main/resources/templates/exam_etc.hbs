@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>기타 언어 검색</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!--자동완성을 위한 jquery 파일들-->
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        div {
+            padding: 10px 0
+        }
+        
+        form {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+        }
+        /*
+        .d1 {
+            background: #A3D0C3;
+        }
+        */
+        
+        .d1 input {
+            width: 100%;
+            height: 20px;
+            padding-left: 10px;
+            border: 2px solid #ce5067;
+            border-radius: 5px;
+            outline: none;
+            background: #F9F0DA;
+            color: #9E9C9C;
+        }
+        
+        .btn {
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+            background-color: #ce5067;
+        }
+        
+        .btn:hover {
+            color: #000000;
+            background-color: #e90c35
+        }
+        
+        input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        label {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+            padding-right: 10px;
+            line-height: 36px;
+            cursor: pointer;
+        }
+        
+        label::before {
+            content: " ";
+            position: absolute;
+            top: 6px;
+            left: 0;
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ce5067;
+            border-radius: 4px;
+            z-index: -1;
+        }
+        
+        input[type="radio"]+label::before {
+            border-radius: 18px;
+        }
+        /* Checked */
+        
+        input[type="radio"]:checked+label {
+            padding-left: 10px;
+            color: #fff;
+        }
+        
+        input[type="radio"]:checked+label::before {
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #ce5067;
+        }
+        /* Transition */
+        
+        label,
+        label::before {
+            -webkit-transition: .25s all ease;
+            transition: .25s all ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="d1">
+        <form align="center" action="/exam_etc" method="POST">
+            <input type="text" placeholder="검색어 입력" name="planguage_name" id="searchbox">
+            <input type="radio" name="planguage_level" value="상" id="rb1" />
+            <label for="rb1">상</label>
+            <input type="radio" name="planguage_level" value="중" id="rb2" />
+            <label for="rb2">중</label>
+            <input type="radio" name="planguage_level" value="하" id="rb3" />
+            <label for="rb3">하</label>
+            <button type="button" class="btn">Submit</button>
+            <!--<input type="submit" style="padding:10px 10px 30px 10px;">-->
+        </form>
+        <script>
+            $(document).ready(function() {
+                var langs = [
+
+                    {
+                        value: '4D',
+                        data: '4D'
+                    }, {
+                        value: 'Ada',
+                        data: 'Ada'
+                    }, {
+                        value: 'ABAP',
+                        data: 'ABAP'
+                    }, {
+                        value: 'HTML/CSS',
+                        data: 'HTML/CSS'
+                    }, {
+                        value: 'Javascript',
+                        data: 'Javascript'
+                    }, {
+                        value: 'Java',
+                        data: 'Java'
+                    }, {
+                        value: 'Jsp',
+                        data: 'Jsp'
+                    }, {
+                        value: 'Julia',
+                        data: 'Julia'
+                    }, {
+                        value: 'BASIC',
+                        data: 'BASIC'
+                    }, {
+                        value: 'C#',
+                        data: 'C#'
+                    }, {
+                        value: 'C++',
+                        data: 'C++'
+                    }, {
+                        value: 'D',
+                        data: 'D'
+                    }, {
+                        value: 'Dart',
+                        data: 'Dart'
+                    }, {
+                        value: 'F#',
+                        data: 'F#'
+                    }, {
+                        value: 'Forth',
+                        data: 'Forth'
+                    }, {
+                        value: 'Factor',
+                        data: 'Foctor'
+                    }, {
+                        value: 'Go',
+                        data: 'Go'
+                    }, {
+                        value: 'Haskell',
+                        data: 'Haskell'
+                    }, {
+                        value: 'ML',
+                        data: 'ML'
+                    }, {
+                        value: 'MATLAB',
+                        data: 'MATLAB'
+                    }, {
+                        value: 'Objective-C',
+                        data: 'Objective-C'
+                    }, {
+                        value: 'Rust',
+                        data: 'Rust'
+                    }, {
+                        value: 'Ruby',
+                        data: 'Ruby'
+                    }, {
+                        value: 'Pascal',
+                        data: 'Pascal'
+                    }, {
+                        value: 'Prolog',
+                        data: 'Prolog'
+                    }, {
+                        value: 'COBOL',
+                        data: 'COBOL'
+                    }, {
+                        value: 'LISP',
+                        data: 'LISP'
+                    }, {
+                        value: 'Lua',
+                        data: 'Lua'
+                    }, {
+                        value: 'Perl',
+                        data: 'Perl'
+                    }, {
+                        value: 'PHP',
+                        data: 'PHP'
+                    }, {
+                        value: 'R',
+                        data: 'R'
+                    }, {
+                        value: 'Groovy',
+                        data: 'Groovy'
+                    }, {
+                        value: 'Scala',
+                        data: 'Scala'
+                    }, {
+                        value: 'occam',
+                        data: 'occam'
+                    }, {
+                        value: 'Swift',
+                        data: 'Swift'
+                    }
+
+                ];
+
+                $('#searchbox').autocomplete({
+                    lookup: langs
+                });
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>

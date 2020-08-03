@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sw역량모니터링시스템</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+    <style>
+        .container {
+            margin-top: 70px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <!--반으로 줄였을때 메뉴보이게 하는 버튼 그림에서 짝대기-->
+                    </button>
+            <a href="main_1_first.hbs" target="fullpageiframe" class="navbar-brand">
+                <img src="css/logo_transparent.png" alt="sam 로고" style="margin-top:-13px"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" id="topMenu">
+                <li class="active"><a href="main_0_home.hbs" target="fullpageiframe">HOME</a></li>
+                <li><a href="main_1_first.hbs" target="fullpageiframe">전체 모니터링</a></li>
+                <li><a href="main_2_language.hbs" target="fullpageiframe">언어</a></li>
+                <li><a href="main_3_project.hbs" target="fullpageiframe">프로젝트</a></li>
+                <li><a href="main_4_intern.hbs" target="fullpageiframe">인턴</a></li>
+                <li><a href="main_5_edu.hbs" target="fullpageiframe">정부/기업 교육</a></li>
+                <li><a href="main_6_cert.hbs" target="fullpageiframe">공인성적</a></li>
+                <li><a href="main_7_grade.hbs" target="fullpageiframe">이수 성적</a></li>
+                <li><a href="main_8_interest.hbs" target="fullpageiframe">관심 분야/목표</a></li>
+                <li><a href="main_9_footprint.hbs" target="fullpageiframe">발자취</a></li>
+
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <!--공백 제거-->
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><a href="/logout">로그아웃</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div>
+            <iframe name="fullpageiframe" width="100%" height="1000px" src="main_0_home.hbs" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        $('.navbar-nav a').on('click', function() {
+            $('.navbar-nav').find('li.active').removeClass('active');
+            $(this).parent('li').addClass('active');
+        });
+    </script>
+</body>
+
+</html>

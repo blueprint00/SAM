@@ -1,0 +1,778 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필터링</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+
+
+    <style>
+        /* Some Sass variables */
+
+        body {
+            margin: 0;
+            font-family: 'Roboto';
+            font-size: 14px;
+            line-height: 1.3em;
+        }
+
+        .ui {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 40px 50px 1fr;
+            background-color: #be354d;
+            color: #eee;
+        }
+
+        .navbar {
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar.app {
+            background-color: #8f283b;
+            font-size: 1.5rem;
+        }
+
+        .navbar.board {
+            font-size: 1.1rem;
+        }
+
+        .lists {
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .lists>* {
+            flex: 0 0 auto;
+            margin-left: 10px;
+        }
+
+        .lists::after {
+            content: '';
+            flex: 0 0 10px;
+        }
+
+        .list {
+            width: 1050px;
+            height: calc(100% - 10px - 17px);
+        }
+
+        .list>* {
+            background-color: #e2e4e6;
+            color: #333;
+            padding: 0 10px;
+        }
+
+        .list header {
+            line-height: 36px;
+            font-size: 16px;
+            font-weight: bold;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .list footer {
+            line-height: 36px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: #888;
+        }
+
+        .list ul {
+            list-style: none;
+            margin: 0;
+            max-height: calc(100% - 36px - 36px);
+            overflow-y: auto;
+        }
+
+        .list ul li {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .list ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .list ul li img {
+            display: block;
+            width: calc(100% + 2 * 10px);
+            margin: -10px 0 10px -10px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+        .container {
+            max-width: 90%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 13px;
+            height: 600px;
+            overflow: scroll;
+        }
+
+        ul.ks-cboxtags {
+            list-style: none;
+            padding: 20px;
+        }
+
+        ul.ks-cboxtags li {
+            display: inline;
+        }
+
+        ul.ks-cboxtags li label {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, .9);
+            border: 2px solid rgba(139, 139, 139, .3);
+            color: #adadad;
+            border-radius: 25px;
+            white-space: nowrap;
+            margin: 3px 0px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: all .2s;
+        }
+
+        ul.ks-cboxtags li label {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        ul.ks-cboxtags li label::before {
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 12px;
+            padding: 2px 6px 2px 2px;
+            content: "+";
+            transition: transform .3s ease-in-out;
+        }
+
+        ul.ks-cboxtags li input[type="checkbox"]:checked+label::before {
+            content: "┼";
+            transform: rotate(-360deg);
+            transition: transform .3s ease-in-out;
+        }
+
+        ul.ks-cboxtags li input[type="checkbox"]:checked+label {
+            border: 2px solid #d26075;
+            background-color: #db8090;
+            color: #fff;
+            transition: all .2s;
+        }
+
+        ul.ks-cboxtags li input[type="checkbox"] {
+            display: absolute;
+        }
+
+        ul.ks-cboxtags li input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        ul.ks-cboxtags li input[type="checkbox"]:focus+label {
+            border: 2px solid #e9a1ff;
+        }
+
+        table#managerfilter {
+            width: 100%;
+            border-spacing: 10px;
+            text-align: left;
+            border: 1px solid #eee;
+        }
+
+        td#f {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #eee;
+            padding-left: 20px;
+        }
+        /* ------------------------------------ */
+        /*수정*/
+        a {
+            margin: 0px;
+            transition: all 0.4s;
+            -webkit-transition: all 0.4s;
+            -o-transition: all 0.4s;
+            -moz-transition: all 0.4s;
+        }
+
+        a:focus {
+            outline: none !important;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        .limiter {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .container-table100 {
+            width: 100%;
+            min-height: 100vh;
+            /*
+  background: #c850c0;
+  background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -o-linear-gradient(45deg, #4158d0, #c850c0);
+  background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+  background: linear-gradient(45deg, #4158d0, #c850c0);*/
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 33px 30px;
+        }
+
+        .wrap-table100 {
+            width: 1170px;
+        }
+
+        table {
+            border-spacing: 1;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        table * {
+            position: relative;
+        }
+
+        table td,
+        table th {
+            padding-left: 8px;
+        }
+
+        table thead tr {
+            height: 60px;
+            background: #BE354D;
+        }
+
+        table tbody tr {
+            height: 50px;
+        }
+
+        table tbody tr:last-child {
+            border: 0;
+        }
+
+        table td,
+        table th {
+            text-align: left;
+        }
+
+        table td.l,
+        table th.l {
+            text-align: right;
+        }
+
+        table td.c,
+        table th.c {
+            text-align: center;
+        }
+
+        table td.r,
+        table th.r {
+            text-align: center;
+        }
+
+        .table100-head th {
+            font-family: OpenSans-Regular;
+            font-size: 18px;
+            color: #fff;
+            line-height: 1.2;
+            font-weight: unset;
+            text-align: center;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        tbody tr {
+            font-family: OpenSans-Regular;
+            font-size: 15px;
+            color: #808080;
+            line-height: 1.2;
+            font-weight: unset;
+        }
+
+        tbody tr:hover {
+            color: #555555;
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+        .column1 {
+            width: 11%;
+            text-align: center;
+            /*padding-left: 40px;*/
+        }
+
+        .column2 {
+            width: 11%;
+            text-align: center;
+        }
+
+        .column3 {
+            width: 11%;
+            text-align: center;
+        }
+
+        .column4 {
+            width: 11%;
+            text-align: center;
+            /*text-align: right;*/
+        }
+
+        .column5 {
+            width: 11%;
+            text-align: center;
+            /*text-align: right;*/
+        }
+
+        .column6 {
+            width: 11%;
+            text-align: center;
+            /*text-align: right;
+    padding-right: 62px;*/
+        }
+
+        .column7 {
+            width: 11%;
+            text-align: center;
+            /*text-align: right;*/
+        }
+
+        .column8 {
+            width: 11%;
+            text-align: center;
+            /*text-align: right;*/
+        }
+
+        .column9 {
+            width: 11%;
+            text-align: center;
+            /*text-align: right;*/
+        }
+
+        @media screen and (max-width: 992px) {
+            table {
+                display: block;
+            }
+            table>*,
+            table tr,
+            table td,
+            table th {
+                display: block;
+            }
+            table thead {
+                display: none;
+            }
+            table tbody tr {
+                height: auto;
+                padding: 37px 0;
+            }
+            table tbody tr td {
+                padding-left: 40% !important;
+                margin-bottom: 24px;
+            }
+            table tbody tr td:last-child {
+                margin-bottom: 0;
+            }
+            table tbody tr td:before {
+                font-family: OpenSans-Regular;
+                font-size: 14px;
+                color: #999999;
+                line-height: 1.2;
+                font-weight: unset;
+                position: absolute;
+                width: 40%;
+                left: 30px;
+                top: 0;
+            }
+            table tbody tr td:nth-child(1):before {
+                content: "Date";
+            }
+            table tbody tr td:nth-child(2):before {
+                content: "Order ID";
+            }
+            table tbody tr td:nth-child(3):before {
+                content: "Name";
+            }
+            table tbody tr td:nth-child(4):before {
+                content: "Price";
+            }
+            table tbody tr td:nth-child(5):before {
+                content: "Quantity";
+            }
+            table tbody tr td:nth-child(6):before {
+                content: "Total";
+            }
+            .column4,
+            .column5,
+            .column6,
+            .column1,
+            .column2,
+            .column3,
+            .column7,
+            .column8,
+            .column9 {
+                width: 100%;
+            }
+            tbody tr {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container-table100 {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+    <div id="fullpage">
+        <div id="1slide" class="section" data-anchor="slide1">
+            <h1 class="highlight"><span>필터링</span></h1>
+
+            <div class="row slide">
+                <div class="container">
+                    <div class="col-md-12">
+                    <form action="/filter" method="GET">
+                        <ul class="ks-cboxtags">
+
+                            <table id="managerfilter">
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>입학년도</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear12" value="12"><label for="user_admyear12">12</label></li>
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear13" value="13" checked><label for="user_admyear13">13</label></li>
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear14" value="14" checked><label for="user_admyear14">14</label></li>
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear15" value="15"><label for="user_admyear15">15</label></li>
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear16" value="16"><label for="user_admyear16">16</label></li>
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear17" value="17" checked><label for="user_admyear17">17</label></li>
+                                        <li><input type="checkbox" name="user_admyear" id="user_admyear18" value="18"><label for="user_admyear18">18</label></li><br>
+                                    </td>
+                                </tr>
+
+                                <td width="100px" id="f">
+                                    <li>학과</li>
+                                </td>
+                                <td id="f">
+                                    <li><input type="checkbox" name="user_major" id="subject_name1" value="컴퓨터공학과"><label for="subject_name1">컴퓨터공학과</label></li>
+                                    <li><input type="checkbox" name="user_major" id="subject_name2" value="소프트웨어학과" checked><label for="subject_name2">소프트웨어학과</label></li>
+                                    <li><input type="checkbox" name="user_major" id="subject_name3" value="정보보호학과" checked><label for="subject_name3">정보보호학과</label></li>
+                                    <li><input type="checkbox" name="user_major" id="subject_name4" value="데이터사이언스학과"><label for="subject_name4">데이터사이언스학과</label></li>
+                                    <li><input type="checkbox" name="user_major" id="subject_name5" value="지능기전공학부"><label for="subject_name5">지능기전공학부</label></li>
+                                    <li><input type="checkbox" name="user_major" id="subject_name6" value="디자인이노베이션" checked><label for="subject_name6">디자인이노베이션</label></li>
+                                    <li><input type="checkbox" name="user_major" id="subject_name7" value="만화애니메이션텍"><label for="subject_name7">만화애니메이션텍</label></li><br>
+
+                                </td>
+                                </tr>
+
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>과목명</li>
+                                    </td>
+                                    <td id="f">
+                                        <input type="text" name="subject_name" placeholder="검색어 입력" id="searchbox4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>등급</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="grade" id="grade1" value="ap"><label for="grade1">A+</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade2" value="az" checked><label for="grade2">A0</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade3" value="bp" checked><label for="grade3">B+</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade4" value="bz"><label for="grade4">B0</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade5" value="cp"><label for="grade5">C+</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade6" value="cz" checked><label for="grade6">C0</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade7" value="dp"><label for="grade7">D+</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade8" value="dz"><label for="grade8">D0</label></li>
+                                        <li><input type="checkbox" name="grade" id="grade9" value="f"><label for="grade9">F</label></li>
+                                    </td>
+                                </tr>
+                                <!--교과목명 검색기능-->
+
+
+
+
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>이수구분</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="option" id="option1" value="me"><label for="option1">전필</label></li>
+                                        <li><input type="checkbox" name="option" id="option2" value="ms" checked><label for="option2">전선</label></li>
+                                        <li><input type="checkbox" name="option" id="option3" value="ce" checked><label for="option3">중필</label></li>
+                                        <li><input type="checkbox" name="option" id="option4" value="cs"><label for="option4">중선</label></li>
+                                        <li><input type="checkbox" name="option" id="option5" value="fc"><label for="option5">자교</label></li>
+                                        <li><input type="checkbox" name="option" id="option6" value="cu" checked><label for="option6">교양</label></li>
+                                        <li><input type="checkbox" name="option" id="option7" value="bc"><label for="option7">기교</label></li>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>주력언어</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="planguage" id="planguage1" value="c"><label for="planguage1">C</label></li>
+                                        <li><input type="checkbox" name="planguage" id="planguage2" value="cpp" checked><label for="planguage2">C++</label></li>
+                                        <li><input type="checkbox" name="planguage" id="planguage3" value="jav" checked><label for="planguage3">Java</label></li>
+                                        <li><input type="checkbox" name="planguage" id="planguage4" value="pyt"><label for="planguage4">Python</label></li>
+                                        <li><input type="checkbox" name="planguage" id="planguage5" value="etc"><label for="planguage5">기타</label></li>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>프로젝트 경험</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="pro1" id="pro1" value="0"><label for="pro1">없음</label></li>
+                                        <li><input type="checkbox" name="contestnum" id="pro2" value="1" checked><label for="pro2">공모전</label></li>
+                                        <li><input type="checkbox" name="studyclubnum" id="pro3" value="1" checked><label for="pro3">스터디/동아리</label></li>
+                                        <li><input type="checkbox" name="projectnum" id="pro4" value="1"><label for="pro4">학교 프로젝트</label></li>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>인턴 경험</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="internnum" id="intern1" value="0"><label for="intern1">없음</label></li>
+                                        <li><input type="checkbox" name="internnum" id="intern2" value="1" checked><label for="intern2">있음</label></li>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>교육 경험</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="checkbox" name="educationnum" id="edu1" value="0"><label for="edu1">없음</label></li>
+                                        <li><input type="checkbox" name="educationnum" id="edu2" value="1" checked><label for="edu2">있음</label></li>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>TOPCIT 성적</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="number" name="topcit" id="topcit"></li>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>TOEIC 성적</li>
+                                    </td>
+                                    <td id="f">
+                                        <li><input type="number" name="toeic" id="toeic"></li>
+                                    </td>
+                                </tr>
+                                <!--학번 이름 입력-->
+                                <tr>
+                                    <td width="100px" id="f">
+                                        <li>학번</li>
+                                    </td>
+                                    <td id="f">
+                                        <input type="text" name="user_num" placeholder="학번입력">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <li>이름</li>
+                                        <input type="text" name="user_name" placeholder="이름입력">
+
+                                    </td>
+                                </tr>
+
+                            </table>
+                            <!--수정-->
+                        </ul>
+                        <ul class="form-style-1">
+                            <li>
+                                <input type="submit" value="Submit" id="moveto" style="margin-bottom:100px;" />
+                            </li>
+                        </ul>
+                    </form>
+
+                </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <div class="row slide">
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="limiter">
+                            <div class="container-table100">
+                                <div class="wrap-table100">
+                                    <div class="table100">
+                                        <table>
+                                            <thead>
+                                            <tr class="table100-head">
+                                                <th class="column1">입학년도</th>
+                                                <th class="column2">학과</th>
+                                                <th class="column3">과목명</th>
+                                                <th class="column4">이수구분</th>
+                                                <th class="column5">주력언어</th>
+                                                <th class="column6">프로젝트</th>
+                                                <th class="column7">인턴</th>
+                                                <th class="column8">TOPCIT</th>
+                                                <th class="column9">TOEIC</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td class="column1">2017-09-29 01:22</td>
+                                                <td class="column2">200398</td>
+                                                <td class="column3">iPhone X 64Gb Grey</td>
+                                                <td class="column4">$999.00</td>
+                                                <td class="column5">1</td>
+                                                <td class="column6">$999.00</td>
+                                                <td class="column7">$999.00</td>
+                                                <td class="column8">$999.00</td>
+                                                <td class="column9">$999.00</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column1">2017-09-28 05:57</td>
+                                                <td class="column2">200397</td>
+                                                <td class="column3">Samsung S8 Black</td>
+                                                <td class="column4">$756.00</td>
+                                                <td class="column5">1</td>
+                                                <td class="column6">$756.00</td>
+                                                <td class="column7">$999.00</td>
+                                                <td class="column8">$999.00</td>
+                                                <td class="column9">$999.00</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column1">2017-09-26 05:57</td>
+                                                <td class="column2">200396</td>
+                                                <td class="column3">Game Console Controller</td>
+                                                <td class="column4">$22.00</td>
+                                                <td class="column5">2</td>
+                                                <td class="column6">$44.00</td>
+                                                <td class="column7">$999.00</td>
+                                                <td class="column8">$999.00</td>
+                                                <td class="column9">$999.00</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="column1">2017-09-25 23:06</td>
+                                                <td class="column2">200392</td>
+                                                <td class="column3">USB 3.0 Cable</td>
+                                                <td class="column4">$10.00</td>
+                                                <td class="column5">3</td>
+                                                <td class="column6">$30.00</td>
+                                                <td class="column7">$999.00</td>
+                                                <td class="column8">$999.00</td>
+                                                <td class="column9">$999.00</th>
+                                            </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        $(document).on('click', '#moveto', function() {
+            $.fn.fullpage.moveTo('slide1', 1);
+        });
+        /*$(document).ready(function() {
+                    $("#fullpage").fullpage({
+                        anchors: ["slide1"]
+
+                    });
+                });
+        */
+
+        /*  $(document).ready(function() {
+              $("#fullpage").fullpage({
+                  anchors: ["slide1", "slide2"]
+
+              });
+          });*/
+        /* $(document).on('click', '#moveto', function() {
+            fullpage_api.moveTo('slide1',1);
+        });
+*/
+        /* $('#moveto').click(() => {
+    console.log("Hello World!");
+    $.fn.fullpage.moveTo('slide1', 1);
+});
+$('#edu').click(() => {
+    console.log("Hello World!");
+    $.fn.fullpage.moveTo('Book4', 1);
+});*/
+    </script>
+</body>
+
+
+
+
+
+</html>

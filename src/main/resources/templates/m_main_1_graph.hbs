@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그래프</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <link href="../../assets/styles.css" rel="stylesheet" />
+
+    <style>
+        #chart {
+            max-width: 650px;
+            margin: 35px auto;
+        }
+    </style>
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+
+
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="book-container section">
+            <h1 class="highlight"><span>그래프</span></h1>
+            <div class="row slide">
+                <div class="container">
+                    <div class="col-md-6">
+                        <form action="/graph" method="GET">
+                            <ul class="form-style-1">
+                                <li><label>x축 정보 선택</label>
+                                    <select name="x" class="field-select">
+                                            <option value="user_admyear">입학년도</option>
+                                            <option value="b">성적</option>
+                                            <option value="c">언어</option>
+                                            <option value="d">역량 갯수</option>
+                                    </select>
+                                </li>
+                                <li><label>y축 정보 선택</label>
+                                    <select name="y" class="field-select">
+                                            <option value="e">학생수</option>
+                                            <option value="f">전공평점</option>
+                                            <option value="g">주력언어갯수</option>
+                                            <option value="h">수상 실적</option>
+                                    </select>
+                                </li>
+                                <li><label>그래프 모양 선택</label>
+                                    <select name="graph" class="field-select">
+                                            <option value="i">가로막대</option>
+                                            <option value="j">세로막대</option>
+                                            <option value="k">꺾은선</option>
+                                            <option value="l">원형</option>
+                                            <option value="m">세로막대</option>
+                                        </select>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                        <br><br><br><br><br>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="chart">
+
+                        </div>
+
+
+                        <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
+
+                        <script>
+                            var options = {
+                                chart: {
+                                    height: 350,
+                                    type: 'bar',
+                                },
+                                plotOptions: {
+                                    bar: {
+                                        horizontal: true,
+                                    }
+                                },
+                                dataLabels: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    data:[500, 530, 548, 570, 577, 580, 690, 1100, 1200, 1380]
+                                }],
+                                xaxis: {
+                                    categories: ['09', '10', '11', '12', '13', '14', '15', '16', '17', '18'],
+                                }
+                            }
+
+                            var chart = new ApexCharts(
+                                    document.querySelector("#chart"),
+                                    options
+                            );
+
+                            chart.render();
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            console.log("Hello World!");
+            $.fn.fullpage.moveTo('Book1', 1);
+        });
+    </script>
+</body>
+
+</html>

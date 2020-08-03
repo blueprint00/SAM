@@ -1,0 +1,282 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인턴</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:900&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto|PT+Mono'>
+
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.autocomplete.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type='text/javascript' src='js/mainpage.js'></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto';
+            font-size: 14px;
+            line-height: 1.3em;
+        }
+        
+        .ui {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 40px 50px 1fr;
+            background-color: #be354d;
+            color: #eee;
+        }
+        
+        .navbar {
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar.app {
+            background-color: #8f283b;
+            font-size: 1.5rem;
+        }
+        
+        .navbar.board {
+            font-size: 1.1rem;
+        }
+        
+        .lists {
+            display: flex;
+            overflow-x: auto;
+        }
+        
+        .lists>* {
+            flex: 0 0 auto;
+            margin-left: 10px;
+        }
+        
+        .lists::after {
+            content: '';
+            flex: 0 0 10px;
+        }
+        
+        .list {
+            width: 300px;
+            height: calc(100% - 10px - 17px);
+        }
+        
+        .list>* {
+            background-color: #e2e4e6;
+            color: #333;
+            padding: 0 10px;
+        }
+        
+        .list header {
+            line-height: 36px;
+            font-size: 16px;
+            font-weight: bold;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        
+        .list footer {
+            line-height: 36px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: #888;
+        }
+        
+        .list ul {
+            list-style: none;
+            margin: 0;
+            max-height: calc(100% - 36px - 36px);
+            overflow-y: auto;
+        }
+        
+        .list ul li {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .list ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        
+        .list ul li img {
+            display: block;
+            width: calc(100% + 2 * 10px);
+            margin: -10px 0 10px -10px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+        
+        #jquery-script-menu {
+            position: fixed;
+            height: 90px;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-top: 5px solid #316594;
+            background: #fff;
+            -moz-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+            -webkit-box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+            box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+            z-index: 999999;
+            padding: 10px 0;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+        
+        .jquery-script-center {
+            width: 960px;
+            margin: 0 auto;
+        }
+        
+        .jquery-script-center ul {
+            width: 212px;
+            float: left;
+            line-height: 45px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .jquery-script-center a {
+            text-decoration: none;
+        }
+        
+        .jquery-script-ads {
+            width: 728px;
+            height: 90px;
+            float: right;
+        }
+        
+        .jquery-script-clear {
+            clear: both;
+            height: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="book-container section">
+            <div class="row slide">
+
+                <h1 class="highlight"><span>인턴 경험</span></h1>
+                <div class="container">
+                    <div class="col-md-12">
+                        <div class="ui">
+                            <nav class="navbar app"></nav>
+                            <nav class="navbar board"></nav>
+                            <div class="lists">
+                                <div class="col-md-12">
+
+
+                                    <div class="list" style="width:98%">
+                                        {{#intern}}
+                                            <header>인턴 정보: {{intern_companyname}}</header>
+                                        <ul>
+                                            <li> 기업분류: {{intern_companyinfo}} <br> 기간:{{intern_period}} <br> 업무:{{intern_job}} <br>분야:{{intern_area}}<br></li>
+                                        </ul><br>
+                                        {{/intern}}
+                                        <footer></footer>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row slide">
+                <h1 class="highlight" align="center"><span>인턴 추가정보</span></h1>
+                <div class="container">
+                    <div>
+                        <p>자신의 프로젝트 경험 볼 수 있음</p>
+                        <p>왼쪽으로 가면 프로젝트 입력/수정</p>
+                        <p>오른쪽으로 가면 프로젝트 추가정보</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row slide">
+                <h1 class="highlight" align="center"><span>인턴 경험 입력</span></h1>
+                <div class="container">
+                    <form action="/main_4_intern" method="POST">
+                        <ul class="form-style-1">
+                            <li><label>분야</label>
+                                <select name="intern_area" class="field-select">
+                                <option value="프론트엔드">프론트엔드</option>
+                                <option value="백엔드">백엔드</option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>기업명</label>
+                                <input type="text" name="intern_companyname" placeholder="기업명" class="field-long" />
+                            </li>
+                            <li>
+                                <label>기업정보</label>
+                                <select name="intern_companyinfo" class="field-select">
+                                        <option value="대기업">대기업</option>
+                                        <option value="중소기업">중소기업</option>
+                                        <option value="스타트업">스타트업</option>
+                                        <option value="공기업">공기업</option>
+                                    </select>
+                            </li>
+                            <li>
+                                <label>기간</label>
+                                <select name="intern_period" class="field-select">
+                                        <option value="1~3개월">1~3개월</option>
+                                        <option value="3~6개월">3~6개월</option>
+                                        <option value="6~12개월">6~12개월</option>
+                                        <option value="1년이상">1년이상</option>
+                                    </select>
+                            </li>
+                            <li>
+                                <label>직무</label>
+                                <input type="text" name="intern_job"  placeholder="직무" class="field-long" />
+                            </li>
+                            <li>
+                                <input type="submit"   value="Submit" />
+                            </li>
+                        </ul>
+                    </form>
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#fullpage").fullpage();
+        });
+    </script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.4/holder.min.js'></script>
+</body>
+
+</html>

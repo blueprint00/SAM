@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullpage.css">
+    <link rel="stylesheet" type="text/css" href="css/samstyle.css">
+
+    <title>파이썬 문제</title>
+
+    <style>
+        .btn {
+            padding: 0.35em 1.2em;
+            border: 0.1em solid #FFFFFF;
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: #FFFFFF;
+            text-align: center;
+            transition: all 0.2s;
+            background-color: lightskyblue;
+        }
+        
+        .btn:hover {
+            color: #000000;
+            background-color: #FFFFFF;
+        }
+        
+        body {
+            background: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body>
+<div id="fullpage">
+
+    <form action="/exam_python" id="Test_python_form" name="Test_python_form" method="POST">
+        <div class="book-container section" data-anchor="prob1">
+            <div class="row">
+                <div class="container">
+                    <div style="overflow:auto;">
+                            <pre>
+    리스트의 길이를 구하기 위해서는 아래 코드처럼 반복문을 사용하여야 하지만
+    내장함수 (______)을 사용하면 더욱 간단하게 길이를 알 수 있다.
+
+    a = [2, 3, 1, 4]
+    length = 0
+    for i in a
+        length = length + 1
+    print('length =', length)"
+                        </pre>
+                    </div>
+
+                    <ul class="form-style-1">
+                        <li>
+                            <input type="text" id="test_python1" name="user_A1" value="" placeholder="답을 입력하세요." class="field-divided" />
+
+                        </li>
+                    </ul>
+                    <br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="book-container section" data-anchor="prob2">
+            <div class="row">
+                <div class="container">
+                    <div style="overflow:auto;">
+                            <pre>
+    _________ python_library _______ function1, function 2
+                        </pre>
+                    </div>
+
+                    <ul class="form-style-1">
+                        <li>
+                            <input type="text" id="test_python2" name="user_A2" value="" placeholder="답을 입력하세요." class="field-divided" />
+
+                        </li>
+                    </ul>
+
+                    <br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="book-container section" data-anchor="prob3">
+            <div class="row">
+                <div class="container">
+                    <div style="overflow:auto;">
+                            <pre>
+    인터넷에 엑세스하여 URL에서 데이터를 읽어오는 라이브러리와 내장 함수는?
+    (______.______)
+                                    </pre>
+                    </div>
+
+                    <ul class="form-style-1">
+                        <li>
+                            <input type="text" id="test_python3" name="user_A3" value="" placeholder="답을 입력하세요." class="field-divided" />
+                            <input type="submit" value="Submit" id="submitpython" name="submitpython" />
+                        </li>
+                    </ul>
+                    <br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <script type='text/javascript' src='js/jquery.min.js'></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.fullpage.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#fullpage").fullpage({
+                anchors: ["prob1", "prob2", "prob3"],
+                loopHorizontal: false,
+                navigation: true,
+                navigationPosition: 'right',
+                navigationTooltips: ['문제 1', '문제 2', '문제 3']
+            });
+        });
+    </script>
+</body>
