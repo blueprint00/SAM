@@ -28,11 +28,11 @@ public class PlanguageService {
 
 
         Integer sum = 0; //왜 밖에 적으면 안되지????????????????
-    if(planguage_name.equals("C")){
-        if(user_A1.equals("number <=")) sum += 1;
-        if(user_A2.equals("*")) sum += 3;
-        if(user_A3.equals("b, c, a")) sum += 5;
-    }
+	    if(planguage_name.equals("C")){
+	        if(user_A1.equals("number <=")) sum += 1;
+	        if(user_A2.equals("*")) sum += 3;
+	        if(user_A3.equals("b, c, a")) sum += 5;
+	    }
 
         if(planguage_name.equals("Cpp")){
             if(user_A1.equals("캡슐화")) sum += 1;
